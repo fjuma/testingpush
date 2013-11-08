@@ -4,7 +4,7 @@
 
 Summary:       Provides the AeroGear UnifiedPush Server on top of JBossAS7
 Name:          openshift-origin-cartridge-aerogear-push
-Version: 1.0.12
+Version: 1.0.13
 Release:       1%{?dist}
 Group:         Development/Languages
 License:       ASL 2.0
@@ -68,9 +68,12 @@ alternatives --install /etc/alternatives/jbossas-7 jbossas-7 /usr/share/jboss-as
 alternatives --set jbossas-7 /usr/share/jboss-as
 %endif
 
+alternatives --install /etc/alternatives/aerogear-push-0 aerogear-push-0 /opt/aerogear-push-%{aerogearver} 102
+alternatives --set aerogear-push-0 /opt/aerogear-push-%{aerogearver}
+
 # Add the AeroGear SimplePush module
 mkdir -p %{cartridgedir}/usr/modules/org/jboss/aerogear/simplepush/main
-ln -fs /opt/aerogear-push-%{aerogearver}/modules/org/jboss/aerogear/simplepush/main/* %{cartridgedir}/usr/modules/org/jboss/aerogear/simplepush/main
+ln -fs /etc/alternatives/aerogear-push-0/modules/org/jboss/aerogear/simplepush/main/* %{cartridgedir}/usr/modules/org/jboss/aerogear/simplepush/main
 
 
 %postun
@@ -85,6 +88,8 @@ if [ $1 -eq 0 ]; then
   %if 0%{?fedora}
     alternatives --remove jbossas-7 /usr/share/jboss-as
   %endif
+
+  alternatives --remove aerogear-push-0 /opt/aerogear-push-%{aerogearver}
 fi
 
 
@@ -92,7 +97,7 @@ fi
 %files
 %dir %{cartridgedir}
 %attr(0755,-,-) %{cartridgedir}/bin/
-%attr(0755,-,-) %{cartridgedir}/versions/0.8.1/bin/
+%attr(0755,-,-) %{cartridgedir}/versions/0/bin/
 %attr(0755,-,-) %{cartridgedir}/hooks/
 %{cartridgedir}
 %doc %{cartridgedir}/README.md
