@@ -4,7 +4,7 @@
 
 Summary:       Provides the AeroGear UnifiedPush Server on top of JBossAS7
 Name:          openshift-origin-cartridge-aerogear-push
-Version: 1.0.13
+Version: 1.0.11
 Release:       1%{?dist}
 Group:         Development/Languages
 License:       ASL 2.0
@@ -18,14 +18,14 @@ Requires:      lsof
 Requires:      java-1.7.0-openjdk
 Requires:      java-1.7.0-openjdk-devel
 Requires:      jboss-as7-modules >= %{jbossver}
-Requires:	   facter
+Requires:      facter
+Requires:      bc
 %if 0%{?rhel}
 Requires:      jboss-as7 >= %{jbossver}
 Requires:      maven3
 %endif
 %if 0%{?fedora}
 Requires:      jboss-as
-Requires:      bc
 Requires:      maven
 %endif
 BuildRequires: jpackage-utils
