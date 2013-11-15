@@ -5,9 +5,9 @@ Description: "Provides the AeroGear UnifiedPush Server, a server that allows sen
 Version: '0'
 License: LGPL
 License-Url: http://www.gnu.org/copyleft/lesser.txt
-Vendor: Red Hat
+Vendor: AeroGear
 Cartridge-Version: 0.0.1
-Cartridge-Vendor: redhat
+Cartridge-Vendor: aerogear
 Categories:
 - service
 - web_framework

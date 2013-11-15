@@ -14,6 +14,9 @@ ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/standalone/log ${OPENSHIFT_AEROGEAR_PUSH_DI
 # Install the UnifiedPush Server WAR
 cp /etc/alternatives/aerogear-push-${version}/standalone/deployments/ag-push.war $OPENSHIFT_AEROGEAR_PUSH_DIR/standalone/deployments/ROOT.war
 
+mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/jboss/aerogear/simplepush/main
+ln -s /etc/alternatives/aerogear-push-0/modules/org/jboss/aerogear/simplepush/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/jboss/aerogear/simplepush/main
+
 # Generate the token key for SimplePush
 token_key=$(generate_password)
 echo "$token_key" > ${OPENSHIFT_AEROGEAR_PUSH_DIR}/env/OPENSHIFT_AEROGEAR_PUSH_TOKEN_KEY
